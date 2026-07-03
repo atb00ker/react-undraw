@@ -1,0 +1,60 @@
+{
+  "name": "react-undraw",
+  "version": "0.1.0",
+  "description": "Configurable React components for Undraw illustrations with primary color support.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atb00ker/react-undraw.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./metadata.json": "./dist/metadata.json"
+  },
+  "scripts": {
+    "prepare": "tsx scripts/prepare.ts",
+    "generate": "bun run scripts/generate.ts",
+    "build": "bun run generate && tsup && cp public/illustrations.json dist/metadata.json",
+    "check": "bun run typecheck && bun run build",
+    "clean": "rm -rf dist && (test -d docs && find docs -mindepth 1 ! -name 'README.md' -exec rm -rf {} + || true)",
+    "clean:generated": "(test -d src/generated && find src/generated -mindepth 1 ! -name 'README.md' -exec rm -rf {} + || true)",
+    "clean:all": "bun run clean && bun run clean:generated",
+    "docs:dev": "bun run generate && rsbuild dev",
+    "docs:build": "bun run generate && rsbuild build",
+    "docs:build:pages": "DOCS_BASE_PATH=/react-undraw/ bun run docs:build",
+    "docs:preview": "rsbuild preview",
+    "typecheck": "bun run generate && tsc -p tsconfig.build.json --noEmit"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "^1.3.0",
+    "@rsbuild/plugin-react": "^1.3.0",
+    "@types/bun": "latest",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.0.0"
+  }
+}

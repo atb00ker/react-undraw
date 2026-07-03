@@ -1,0 +1,34 @@
+# React Undraw
+
+> Configurable React components for Undraw illustrations.
+
+## Catalog (machine-readable)
+
+- Full catalog: /react-undraw/illustrations.json
+- Compact index: /react-undraw/illustrations.index.json
+- Search: match `searchText` or `title` against user intent (e.g. "remote work", "empty state", "login", "new user" → add-user). `searchText` includes slug tokens plus generated aliases.
+- Each entry has `name` (kebab-case slug) and `componentName` (PascalCase React export)
+
+## Download SVG source files
+
+No install required. After picking an illustration from the catalog:
+
+- Site base: https://atb00ker.github.io/react-undraw
+- URL template: {siteUrl}/illustrations/{name}.svg
+- Each catalog entry includes `svgPath` (relative) and `svgUrl` (absolute, ready to fetch)
+- Example: curl -LO https://atb00ker.github.io/react-undraw/illustrations/add-user.svg
+- Downloaded SVGs are original Undraw source files (hardcoded #2563eb accent), not the React `{primaryColor}` variant
+
+## Usage after picking an illustration
+
+- Dynamic: import { UndrawIllustration } from "react-undraw"; <UndrawIllustration name="<name>" primaryColor="#2563eb" />
+- Named (tree-shakeable): import { <componentName> } from "react-undraw"
+
+## npm package
+
+- Installed catalog: node_modules/react-undraw/dist/metadata.json (import via `react-undraw/metadata.json`)
+
+## Human gallery
+
+- /react-undraw/ — visual browser with search
+- Deep links: ?q=<search> or ?illustration=<name>
